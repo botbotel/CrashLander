@@ -1,0 +1,18 @@
+body{
+    background-color: olive;
+}
+
+
+.cabecera {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+}
+
+.crearMiembro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}

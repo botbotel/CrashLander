@@ -1,0 +1,25 @@
+<div class="cuentasTotales">
+    <h2><b>Total Tickets pagados: </b>{{cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
+    <h2><b>Total Tickets a deber: </b>{{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
+</div>
+
+
+
+<div>
+    <form [formGroup]="nuevoMiembro">
+        <input matInput placeholder="Nombre" formControlName="nombre" required>
+        <!-- ERROR EN CASO DE CAMPO REQUERIDO VACÍO -->
+        <div *ngIf="nombre?.errors?.['required'] && nombre?.touched">
+            <b [ngStyle]="{color: 'tomato'}">EL NOMBRE ES NECESARIO, BASURA</b>
+        </div>
+        <input matInput placeholder="0€" formControlName="CuentaPagada">
+        <input matInput placeholder="0€" formControlName="CuentaNoPagada">
+        <button mat-raised-button color="primary" (click)="enviarFormulario()">Añadir</button>
+    </form>
+</div>
+
+
+
+<div class="listado">
+    <app-miembros-page *ngFor="let miembro of miembros" [miembro]="miembro" (sumarTicket)="agregarTicket()" (sumarTicketNP)="agregarTicketNoPagado()"></app-miembros-page>
+</div>

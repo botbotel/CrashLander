@@ -1,0 +1,22 @@
+<mat-accordion class="miembro" ngClass="">
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>{{miembro.nombre}}</h3>
+            </mat-panel-title>
+            <mat-panel-description>
+                Detalle
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h4>Total pagado: {{miembro.cuentaPagada | currency:'EUR':true:'.0-0'}}</h4>
+        <h4>Total a deber: {{miembro.cuentaNoPagada| currency:'EUR':true:'.0-0'}}</h4>
+
+        <button mat-raised-button color="primary" class="botoneraTickets" (click)="agregarTicket()">Agregar
+            Ticket</button>
+        <button mat-raised-button color="primary" (click)="agregarTicketNoPagado()">Agregar ticket no pagado</button>
+    </mat-expansion-panel>
+    <mat-accordion (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    </mat-accordion>
+
+</mat-accordion>
+
