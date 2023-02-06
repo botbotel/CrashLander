@@ -18,24 +18,23 @@ export class MiembrosPageComponent implements OnInit {
   @Input() miembro: IMiembro;
 
   /*****************************************************/
-    /**
+  /** 
    * MANDA LA CANTIDAD PARA SUMARLA EN @cuentaTotalPagada
    */
   @Output() sumarTicket = new EventEmitter<number>();
 
   /*****************************************************/
-      /**
+  /**
    * MANDA LA CANTIDAD PARA SUMARLA EN @cuentaTotalNoPagada
    */
   @Output() sumarTicketNP = new EventEmitter<number>();
 
-    /*****************************************************/
-          /**
-   * MANDA LA CANTIDAD QUE SE RESTA EN LA CUENTA A DEBER DEL MIEMBRO
-   * PARA RESTARLA EN @cuentaTotalNoPagada Y SUMARLA EN @cuentaTotalPagada
-   */
+  /*****************************************************/
+  /**
+ * MANDA LA CANTIDAD QUE SE RESTA EN LA CUENTA A DEBER DEL MIEMBRO
+ * PARA RESTARLA EN @cuentaTotalNoPagada Y SUMARLA EN @cuentaTotalPagada
+ */
   @Output() limpiarNP = new EventEmitter<number>();
-
 
 
 
@@ -52,7 +51,7 @@ export class MiembrosPageComponent implements OnInit {
     this.sumarTicket.emit(
       this.miembro.cuentaPagada += 5
     );
-    
+
   }
 
   agregarTicketNoPagado() {
@@ -67,6 +66,9 @@ export class MiembrosPageComponent implements OnInit {
     );
   }
 
+  borrarCuentaP() {
+    this.miembro.cuentaPagada -= this.miembro.cuentaPagada
+  }
 
 }
 

@@ -14,12 +14,24 @@
         <button mat-raised-button color="primary" class="botoneraTickets" (click)="agregarTicket()">Agregar
             Ticket</button>
         <button mat-raised-button color="primary" (click)="agregarTicketNoPagado()">Agregar ticket no pagado</button>
-        <button mat-fab color="primary" (click)="borrarCuentaNP()">
-            Borrar no pagados
-        </button>
-    </mat-expansion-panel>
-    <mat-accordion (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    </mat-accordion>
 
+        <!-- MENU VERTICAL -->
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+            </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="borrarCuentaP()">
+                <mat-icon>delete</mat-icon>
+                <span>Borrar cuenta pagada</span>
+            </button>
+            <button mat-menu-item (click)="borrarCuentaNP()">
+                <mat-icon>delete</mat-icon>
+                <span>Borrar cuenta no pagada</span>
+            </button>
+        </mat-menu>
+    </mat-expansion-panel>
+    <mat-accordion  (opened)="panelOpenState = true" 
+                    (closed)="panelOpenState = false">
+    </mat-accordion>
 </mat-accordion>
 

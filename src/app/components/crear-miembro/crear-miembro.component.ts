@@ -16,6 +16,10 @@ import { __values } from 'tslib';
 
 
 export class CrearMiembroComponent implements OnInit {
+  /**
+   * VALOR POR DEFECTO
+   */
+  value = '';
 
   nuevoMiembro: FormGroup = new FormGroup({})
   miembros: IMiembro[] | undefined = []
@@ -93,6 +97,7 @@ export class CrearMiembroComponent implements OnInit {
    */
   eliminarNP(){
     
+    //TODO: FUNCION PARA RESTAR NUMERO DE TICKETS Y SUMARLOS EN CUENTATOTALPAGADA
   }
 
 }

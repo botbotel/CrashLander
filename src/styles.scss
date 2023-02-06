@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%;}
+body { margin: 0; font-family: 'Anton', sans-serif; background-color: olive; color: whitesmoke;}
+
+
+@media (max-width: 768px) {
+    .cabecera {
+
+        h1,h3,h4 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

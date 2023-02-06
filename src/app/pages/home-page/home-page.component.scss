@@ -1,13 +1,16 @@
-body{
-    background-color: olive;
-}
 
 
 .cabecera {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
+    margin-top: 5rem;
+font-family: 'Anton', sans-serif;
+    
+    h1, h3, h4 {
+        font-size: xx-large;
+        margin: 1rem;
+    }
 }
 
 .crearMiembro {
@@ -16,3 +19,5 @@ body{
     align-items: center;
     margin-top: 6rem;
 }
+
+

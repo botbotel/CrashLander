@@ -16,4 +16,26 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 3rem;
+
+    h2 {
+      font-size: x-large;
+    }
+    
+  }
+
+  .fomulario {
+    display: flex;
+    flex-direction: row;
+    
+    input {
+      margin: 5px;
+    }
+
+    button {
+      margin: 5px;
+    }
+  }
+  
+  .example-form-field {
+    width: 200px;
   }

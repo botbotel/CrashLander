@@ -1,19 +1,41 @@
 <div class="cuentasTotales">
-    <h2><b>Total Tickets pagados: </b>{{cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
-    <h2><b>Total Tickets a deber: </b>{{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
+    <h2>Total Tickets pagados: {{cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
+    <h2>Total Tickets a deber: {{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
 </div>
 
 
 
-<div>
+<div class="formulario">
     <form [formGroup]="nuevoMiembro">
-        <input matInput placeholder="Nombre" formControlName="nombre" required>
+        <mat-form-field class="example-form-field">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre" formControlName="nombre" required [(ngModel)]="value">
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        
         <!-- ERROR EN CASO DE CAMPO REQUERIDO VACÍO -->
         <div *ngIf="nombre?.errors?.['required'] && nombre?.touched">
-            <b [ngStyle]="{color: 'tomato'}">EL NOMBRE ES NECESARIO, BASURA</b>
+            <b [ngStyle]="{color: 'white'}">EL NOMBRE ES NECESARIO, BASURA</b>
         </div>
-        <input matInput placeholder="0€" formControlName="CuentaPagada">
-        <input matInput placeholder="0€" formControlName="CuentaNoPagada">
+        
+        <mat-form-field class="example-form-field">
+            <mat-label>Tickets pagados</mat-label>
+            <input matInput placeholder="0€" formControlName="CuentaPagada">
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        
+        <mat-form-field class="example-form-field">
+            <mat-label>Tickets a deber</mat-label>
+            <input matInput placeholder="0€" formControlName="CuentaNoPagada">
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        
         <button mat-raised-button color="primary" (click)="enviarFormulario()">Añadir</button>
     </form>
 </div>
