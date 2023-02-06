@@ -1,4 +1,4 @@
-<mat-accordion class="miembro" ngClass="">
+<mat-accordion class="miembro" >
     <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -14,6 +14,9 @@
         <button mat-raised-button color="primary" class="botoneraTickets" (click)="agregarTicket()">Agregar
             Ticket</button>
         <button mat-raised-button color="primary" (click)="agregarTicketNoPagado()">Agregar ticket no pagado</button>
+        <button mat-fab color="primary" (click)="borrarCuentaNP()">
+            Borrar no pagados
+        </button>
     </mat-expansion-panel>
     <mat-accordion (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     </mat-accordion>

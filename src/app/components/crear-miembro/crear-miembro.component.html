@@ -19,7 +19,11 @@
 </div>
 
 
-
+<!-- ETIQUETA DE COMPONENTE MIEMBROS-PAGE CON BINDING PARA COMPONENTE CREAR-MIEMBRO -->
 <div class="listado">
-    <app-miembros-page *ngFor="let miembro of miembros" [miembro]="miembro" (sumarTicket)="agregarTicket()" (sumarTicketNP)="agregarTicketNoPagado()"></app-miembros-page>
+    <app-miembros-page *ngFor="let miembro of miembros" [miembro]="miembro" 
+                        (sumarTicket)="agregarTicket()" 
+                        (sumarTicketNP)="agregarTicketNoPagado()"
+                        (limpiarNP)="eliminarNP()">
+    </app-miembros-page>
 </div>

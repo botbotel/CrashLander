@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule, MatFormFieldControl, MatFormField} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -18,8 +19,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatExpansionModule,
     MatButtonModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   exports: [
     MatExpansionModule,
@@ -27,7 +28,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatFormField,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ]
 
 })

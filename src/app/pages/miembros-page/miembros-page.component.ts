@@ -12,11 +12,29 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class MiembrosPageComponent implements OnInit {
 
+  /**
+   * RECIBE LA LISTA DE USUARIOS PARA CARGAR EN PÁGINA POR *NGFOR
+   */
   @Input() miembro: IMiembro;
-  @Output() sumarTicket = new EventEmitter<number>();
-  @Output() sumarTicketNP = new EventEmitter<number>();
-  @Output() agregarTotalP = new EventEmitter<number>();
 
+  /*****************************************************/
+    /**
+   * MANDA LA CANTIDAD PARA SUMARLA EN @cuentaTotalPagada
+   */
+  @Output() sumarTicket = new EventEmitter<number>();
+
+  /*****************************************************/
+      /**
+   * MANDA LA CANTIDAD PARA SUMARLA EN @cuentaTotalNoPagada
+   */
+  @Output() sumarTicketNP = new EventEmitter<number>();
+
+    /*****************************************************/
+          /**
+   * MANDA LA CANTIDAD QUE SE RESTA EN LA CUENTA A DEBER DEL MIEMBRO
+   * PARA RESTARLA EN @cuentaTotalNoPagada Y SUMARLA EN @cuentaTotalPagada
+   */
+  @Output() limpiarNP = new EventEmitter<number>();
 
 
 
@@ -41,10 +59,13 @@ export class MiembrosPageComponent implements OnInit {
     this.sumarTicketNP.emit(
       this.miembro.cuentaNoPagada += 5
     );
-    
   }
 
-
+  borrarCuentaNP() {
+    this.limpiarNP.emit(
+      this.miembro.cuentaNoPagada -= this.miembro.cuentaNoPagada
+    );
+  }
 
 
 }
