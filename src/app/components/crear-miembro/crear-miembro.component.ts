@@ -5,7 +5,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ɵInjectableAnimationEngine } from '@angular/platform-browser/animations';
 import { MiembrosPageComponent } from 'src/app/pages/miembros-page/miembros-page.component';
 import { ThisReceiver } from '@angular/compiler';
-import { __values } from 'tslib';
+
 
 
 @Component({
@@ -28,8 +28,8 @@ export class CrearMiembroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  @Input()cuentaTotalPagada: number = 0
-  @Input()cuentaTotalNoPagada: number = 0
+  @Input() cuentaTotalPagada: number = 0
+  @Input() cuentaTotalNoPagada: number = 0
 
   ngOnInit(): void {
     /**
@@ -48,7 +48,7 @@ export class CrearMiembroComponent implements OnInit {
   }
 
 
-//GETTERS DE FORMULARIO
+  //GETTERS DE FORMULARIO
   get nombre() {
     return this.nuevoMiembro.get('nombre')
   }
@@ -78,27 +78,32 @@ export class CrearMiembroComponent implements OnInit {
    * DE COMPONENTE MIEMBROS-PAGE Y LO SUMA 
    * EN @cuentaTotalPagada
    */
-  agregarTicket(){
-    this.cuentaTotalPagada +=5
+  agregarTicket() {
+    this.cuentaTotalPagada += 5
   }
 
-    /**
-   * @agregarTicketNoPagado RECOGE EL VALOR QUE RECIBE POR EMITTER
-   * DE COMPONENTE MIEMBROS-PAGE Y LO SUMA 
-   * EN @cuentaTotalNoPagada
-   */
-  agregarTicketNoPagado(){
-    this.cuentaTotalNoPagada +=5
+  /**
+ * @agregarTicketNoPagado RECOGE EL VALOR QUE RECIBE POR EMITTER
+ * DE COMPONENTE MIEMBROS-PAGE Y LO SUMA 
+ * EN @cuentaTotalNoPagada
+ */
+  agregarTicketNoPagado() {
+    this.cuentaTotalNoPagada += 5
   }
 
   /**
    * @eliminarNP RECOGE EL VALOR QUE RECIBE POR EMITTER 
    * Y BORRA LA CANTIDAD EQUIVALENTE EN @cuentaTotalNoPagada
+   * Y SUMA A @cuentaTotalPagada
    */
-  eliminarNP(){
-    
-    //TODO: FUNCION PARA RESTAR NUMERO DE TICKETS Y SUMARLOS EN CUENTATOTALPAGADA
+  eliminarNP(cuentaNoPagada: number) {
+    this.cuentaTotalNoPagada -= cuentaNoPagada;
+    if (this.cuentaTotalNoPagada >= 0) {
+      this.cuentaTotalPagada += cuentaNoPagada;
+    }
   }
+
+
 
 }
 

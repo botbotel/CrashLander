@@ -46,6 +46,6 @@
     <app-miembros-page *ngFor="let miembro of miembros" [miembro]="miembro" 
                         (sumarTicket)="agregarTicket()" 
                         (sumarTicketNP)="agregarTicketNoPagado()"
-                        (limpiarNP)="eliminarNP()">
+                        (limpiarNP)="eliminarNP($event)">
     </app-miembros-page>
 </div>

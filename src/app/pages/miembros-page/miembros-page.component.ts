@@ -61,21 +61,17 @@ export class MiembrosPageComponent implements OnInit {
   }
 
   borrarCuentaNP() {
-    this.limpiarNP.emit(
-      this.miembro.cuentaNoPagada -= this.miembro.cuentaNoPagada
-    );
+    let cuentaNoPagada = this.miembro.cuentaNoPagada
+    this.miembro.cuentaNoPagada -= cuentaNoPagada
+    this.limpiarNP.emit(cuentaNoPagada)
   }
 
   borrarCuentaP() {
     this.miembro.cuentaPagada -= this.miembro.cuentaPagada
-  }
-
 }
 
 
 
-
-
-
+}
 
 
