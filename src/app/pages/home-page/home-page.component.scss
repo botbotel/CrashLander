@@ -1,23 +1,54 @@
 
-
-.cabecera {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5rem;
-font-family: 'Anton', sans-serif;
+:host {
     
-    h1, h3, h4 {
-        font-size: xx-large;
-        margin: 1rem;
+
+    
+    .cabecera {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5rem;
+        background-color: black;
+        padding: 3rem;
+        border: 0;
+        margin: 0;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+        h1, h3, h4 {
+            font-size: xx-large;
+            font-weight: 700;
+            margin: 1rem;
+            align-items: center;
+            justify-content: center;
+            -webkit-text-stroke: 0.7px olive;
+        }
+    }
+    
+    .crearMiembro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 6rem;
     }
 }
 
-.crearMiembro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 6rem;
+@media (max-width: 575px) {
+    .cabecera {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h1,h3,h4 {
+            justify-content: center;
+        }
+    }
 }
+
+
+
+
+
 
 

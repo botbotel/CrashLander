@@ -1,4 +1,4 @@
-<div class="cuentasTotales">
+<div class="cuentasTotales" >
     <h2>Total Tickets pagados: {{cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
     <h2>Total Tickets a deber: {{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
 </div>
@@ -36,7 +36,7 @@
             </button>
         </mat-form-field>
         
-        <button mat-raised-button color="primary" (click)="enviarFormulario()">Añadir</button>
+        <button  class="botonFormulario" mat-raised-button color="primary" (click)="enviarFormulario()">Añadir</button>
     </form>
 </div>
 

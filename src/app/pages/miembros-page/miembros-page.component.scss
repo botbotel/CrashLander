@@ -1,28 +1,31 @@
+:host {
+    .mat-mdc-form-field+.mat-mdc-form-field {
+        margin-left: 8px;
+    }
 
 
-.mat-mdc-form-field + .mat-mdc-form-field {
-    margin-left: 8px;
-}
+    .miembro {
+            display: flex;
+            margin: 1rem;
+            button {
+            margin: 5px;
+        }
+    }
 
 
-.miembro {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem;
-
-    button {
-        margin: 5px;
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 48
     }
 }
 
-
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 300,
-  'GRAD' 0,
-  'opsz' 48
+@media (max-width: 575px) {
+    .miembro {
+        display:flex;
+        flex-direction: column;
+        justify-content:center;
+    }
 }
-
