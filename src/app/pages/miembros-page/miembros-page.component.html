@@ -28,10 +28,15 @@
                 <mat-icon>delete</mat-icon>
                 <span>Borrar cuenta no pagada</span>
             </button>
+            <button mat-menu-item (click)="eliminarMiembro()">
+                <mat-icon>delete</mat-icon>
+                <span>Eliminar miembro</span>
+            </button>
         </mat-menu>
     </mat-expansion-panel>
     <mat-accordion  (opened)="panelOpenState = true" 
                     (closed)="panelOpenState = false">
     </mat-accordion>
 </mat-accordion>
+
 

@@ -35,7 +35,12 @@ export class MiembrosPageComponent implements OnInit {
  * PARA RESTARLA EN @cuentaTotalNoPagada Y SUMARLA EN @cuentaTotalPagada
  */
   @Output() limpiarNP = new EventEmitter<number>();
-
+  
+  /*****************************************************/
+  /**
+ * MANDA EL NOMBRE DEL USUARIO A ELIMINAR EN EL ARRAY
+ */
+  @Output() eliminarM = new EventEmitter<any>();
 
 
   panelOpenState = false;
@@ -51,7 +56,6 @@ export class MiembrosPageComponent implements OnInit {
     this.sumarTicket.emit(
       this.miembro.cuentaPagada += 5
     );
-
   }
 
   agregarTicketNoPagado() {
@@ -68,10 +72,11 @@ export class MiembrosPageComponent implements OnInit {
 
   borrarCuentaP() {
     this.miembro.cuentaPagada -= this.miembro.cuentaPagada
+  }
+
+  eliminarMiembro() {
+    const seleccionado = this.miembro.nombre
+    this.eliminarM.emit(seleccionado)
+  }
+
 }
-
-
-
-}
-
-

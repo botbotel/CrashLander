@@ -1,10 +1,11 @@
 import { formatCurrency } from '@angular/common';
 import { Component, Injectable, Input, OnInit, Output } from '@angular/core';
 import { IMiembro } from 'src/app/interfaces/miembros.interface';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, SelectControlValueAccessor } from '@angular/forms';
 import { ɵInjectableAnimationEngine } from '@angular/platform-browser/animations';
 import { MiembrosPageComponent } from 'src/app/pages/miembros-page/miembros-page.component';
 import { ThisReceiver } from '@angular/compiler';
+import { findIndex } from 'rxjs';
 
 
 
@@ -22,29 +23,31 @@ export class CrearMiembroComponent implements OnInit {
   value = '';
 
   nuevoMiembro: FormGroup = new FormGroup({})
+
   miembros: IMiembro[] | undefined = []
 
-
+  
 
   constructor(private formBuilder: FormBuilder) { }
 
   @Input() cuentaTotalPagada: number = 0
   @Input() cuentaTotalNoPagada: number = 0
 
+
+  
+
   ngOnInit(): void {
+
     /**
      * CREACION DE NUEVO MIEMBRO RECOGIDOS EN 
-     * FORMBUILDER CON VALORES POR DEFECTO
+     * FORMGROUP CON VALORES POR DEFECTO
      * CUENTAS INICIAN EN 0 SIEMPRE
      */
-    this.nuevoMiembro = this.formBuilder.group(
-      {
-        nombre: '',
-        cuentaPagada: 0,
-        cuentaNoPagada: 0
-      }
-    );
-
+    this.nuevoMiembro = new FormGroup ({
+      nombre: new FormControl(''),
+      cuentaPagada: new FormControl(0),
+      cuentaNoPagada: new FormControl(0)
+    })
   }
 
 
@@ -103,9 +106,16 @@ export class CrearMiembroComponent implements OnInit {
     }
   }
 
-
-
-}
-
-
+  /**
+   * @eliminarMiembroSeleccionado RECIBE EL NOMBRE DEL USUARIO 
+   * DESDE EL EMITTER, BUSCA EL USUARIO EN EL ARRAY POR EL INDEX
+   * Y LO BORRA DE LA LISTA
+   */
+  eliminarMiembroSeleccionado(seleccionado:any) {
+    let i = this.miembros?.findIndex((miembro:IMiembro) => miembro.nombre ===  seleccionado)
+    if(i !== -1) {
+      this.miembros?.splice(i as number, 1)
+      }
+    }
+  }
 
