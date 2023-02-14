@@ -6,6 +6,9 @@ import { ɵInjectableAnimationEngine } from '@angular/platform-browser/animation
 import { MiembrosPageComponent } from 'src/app/pages/miembros-page/miembros-page.component';
 import { ThisReceiver } from '@angular/compiler';
 import { findIndex } from 'rxjs';
+import { ContactServiceService } from 'src/app/services/contact-service.service';
+import { Router } from '@angular/router';
+
 
 
 
@@ -24,11 +27,12 @@ export class CrearMiembroComponent implements OnInit {
 
   nuevoMiembro: FormGroup = new FormGroup({})
 
-  miembros: IMiembro[] | undefined = []
+  miembros: IMiembro[] =  []
+  
 
   
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private contactService:ContactServiceService, private router:Router) { }
 
   @Input() cuentaTotalPagada: number = 0
   @Input() cuentaTotalNoPagada: number = 0
@@ -37,6 +41,11 @@ export class CrearMiembroComponent implements OnInit {
   
 
   ngOnInit(): void {
+
+    /**
+     * CARGA EL ARRAY DESDE CONTACT-SERVICE Y LO DECLARA COMO MIEMBROS
+     */
+    this.contactService.listadoMiembros = this.miembros
 
     /**
      * CREACION DE NUEVO MIEMBRO RECOGIDOS EN 
@@ -73,7 +82,7 @@ export class CrearMiembroComponent implements OnInit {
   enviarFormulario() {
     if (this.nuevoMiembro.valid) {
       alert('Se va a añadir al nuevo basuras')
-      this.miembros?.push(this.nuevoMiembro.value)
+      this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
     }
   }
   /**
@@ -107,8 +116,8 @@ export class CrearMiembroComponent implements OnInit {
   }
 
   /**
-   * @eliminarMiembroSeleccionado RECIBE EL NOMBRE DEL USUARIO 
-   * DESDE EL EMITTER, BUSCA EL USUARIO EN EL ARRAY POR EL INDEX
+   * @eliminarMiembroSeleccionado RECIBE EL NOMBRE DEL MIEMBRO 
+   * DESDE EL EMITTER, BUSCA EL MIEMBRO EN EL ARRAY, COGE SU INDEX
    * Y LO BORRA DE LA LISTA
    */
   eliminarMiembroSeleccionado(seleccionado:any) {
@@ -116,6 +125,11 @@ export class CrearMiembroComponent implements OnInit {
     if(i !== -1) {
       this.miembros?.splice(i as number, 1)
       }
+    }
+
+
+    irResumen() {
+      this.router.navigate(["/miembrosDetail"])
     }
   }
 

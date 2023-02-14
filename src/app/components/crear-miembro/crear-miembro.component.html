@@ -3,7 +3,7 @@
     <h2>Total Tickets a deber: {{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
 </div>
 
-
+<button mat-raised-button (click)="irResumen()" color="primary">Ver Resumen</button>
 
 <div class="formulario">
     <form [formGroup]="nuevoMiembro">
@@ -50,3 +50,9 @@
                         (eliminarM)="eliminarMiembroSeleccionado($event)">
     </app-miembros-page>
 </div>
+
+<ng-container>
+    <div class="tablaToExport">
+        
+    </div>
+</ng-container>

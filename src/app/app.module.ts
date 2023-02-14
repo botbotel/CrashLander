@@ -17,6 +17,8 @@ import { MaterialModule } from './modules/material/material.module';
 import localeES from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
+import { ContactServiceService } from './services/contact-service.service';
 registerLocaleData(localeES)
 
 @NgModule({
@@ -39,7 +41,8 @@ registerLocaleData(localeES)
   providers: [
     {
       provide: LOCALE_ID, useValue: 'es'
-    }
+    },
+    ContactServiceService
   ],
   bootstrap: [AppComponent]
 })

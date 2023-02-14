@@ -1,1 +1,28 @@
-<p>miembros-detail works!</p>
+<button mat-raised-button color="primary" (click)="volverHome()" class="botonVolver"> <= Volver</button>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Miembro </mat-header-cell>
+      <mat-cell *matCellDef="let m"> {{m.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cPagada">
+      <mat-header-cell *matHeaderCellDef> Pagados </mat-header-cell>
+      <mat-cell *matCellDef="let m"> {{m.cuentaPagada}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="cDeber">
+      <mat-header-cell *matHeaderCellDef> A Deber </mat-header-cell>
+      <mat-cell *matCellDef="let m"> {{m.cuentaNoPagada}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<button mat-raised-button color="primary" class="botonExcel"> Descargar en Excel </button>
+
