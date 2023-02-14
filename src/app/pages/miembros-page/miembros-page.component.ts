@@ -52,28 +52,54 @@ export class MiembrosPageComponent implements OnInit {
   ngOnInit(): void { }
 
 
+  /**
+   * @agregarTicket SUMA +5 EN LA CUENTA PAGADA DEL MIEMBRO
+   * Y A SU VEZ EMITE EL VALOR PARA SUMARLO EN @cuentaTotalPagada
+   * DE CREAR-MIEMBRO-COMPONENT
+   */
   agregarTicket() {
+    let cuentaPagada = this.miembro.cuentaPagada += 5
     this.sumarTicket.emit(
-      this.miembro.cuentaPagada += 5
+      cuentaPagada
     );
   }
-
+  /************************************************************/
+  /**
+   * @agregarTicketNoPagado SUMA +5 EN LA CUENTA NO PAGADA DEL MIEMBRO
+   * Y A SU VEZ EMITE EL VALOR PARA SUMARLO EN @cuentaTotalNoPagada
+   * DE CREAR-MIEMBRO-COMPONENT
+   */
   agregarTicketNoPagado() {
     this.sumarTicketNP.emit(
       this.miembro.cuentaNoPagada += 5
     );
   }
-
+    /************************************************************/
+  /**
+   * @borrarCuentaNP BORRA LA CUENTA NO PAGADA DEL MIEMBRO, 
+   * SUMA LA CANTIDAD A DEBER A @cuentaPagada DEL MIEMBRO
+   * Y A SU VEZ EMITE EL VALOR BORRADO A FUNCION @eliminarNP EN CREAR-MIEMBRO-COMPONET
+   * PARA BORRAR DE @cuentaTotalNoPagada EL MISMO VALOR Y SUMARLO EN 
+   * @cuentaTotalPagada
+   */
   borrarCuentaNP() {
     let cuentaNoPagada = this.miembro.cuentaNoPagada
     this.miembro.cuentaNoPagada -= cuentaNoPagada
+    this.miembro.cuentaPagada += cuentaNoPagada
     this.limpiarNP.emit(cuentaNoPagada)
   }
-
+    /************************************************************/
+  /**
+   * @borrarCuentaP BORRA LA CUENTA TOTAL DEL MIEMBRO SELECCIONADO
+   */
   borrarCuentaP() {
     this.miembro.cuentaPagada -= this.miembro.cuentaPagada
   }
-
+    /************************************************************/
+  /**
+   * @eliminarMiembro EMITE EL NOMBRE DEL MIEMBRO SELECCIONADO A
+   * @eliminarMiembroSeleccionado PARA SU COMPROBACIÓN Y BORRADO DEL ARRAY
+   */
   eliminarMiembro() {
     const seleccionado = this.miembro.nombre
     this.eliminarM.emit(seleccionado)

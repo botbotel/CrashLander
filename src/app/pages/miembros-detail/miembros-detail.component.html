@@ -2,19 +2,19 @@
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!-- Name Column -->
+    <!-- COLUMNA NOMBRE -->
     <ng-container matColumnDef="nombre">
       <mat-header-cell *matHeaderCellDef> Miembro </mat-header-cell>
       <mat-cell *matCellDef="let m"> {{m.nombre}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- COLUMNA CUENTA PAGADA -->
     <ng-container matColumnDef="cPagada">
       <mat-header-cell *matHeaderCellDef> Pagados </mat-header-cell>
       <mat-cell *matCellDef="let m"> {{m.cuentaPagada}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- COLUMNA CUENTA NO PAGADA -->
     <ng-container matColumnDef="cDeber">
       <mat-header-cell *matHeaderCellDef> A Deber </mat-header-cell>
       <mat-cell *matCellDef="let m"> {{m.cuentaNoPagada}} </mat-cell>

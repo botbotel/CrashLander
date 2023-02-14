@@ -1,7 +1,7 @@
 import { formatCurrency } from '@angular/common';
 import { Component, Injectable, Input, OnInit, Output } from '@angular/core';
 import { IMiembro } from 'src/app/interfaces/miembros.interface';
-import { FormArray, FormBuilder, FormControl, FormGroup, SelectControlValueAccessor } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup, SelectControlValueAccessor, Validators } from '@angular/forms';
 import { ɵInjectableAnimationEngine } from '@angular/platform-browser/animations';
 import { MiembrosPageComponent } from 'src/app/pages/miembros-page/miembros-page.component';
 import { ThisReceiver } from '@angular/compiler';
@@ -53,7 +53,7 @@ export class CrearMiembroComponent implements OnInit {
      * CUENTAS INICIAN EN 0 SIEMPRE
      */
     this.nuevoMiembro = new FormGroup ({
-      nombre: new FormControl(''),
+      nombre: new FormControl('', [Validators.required]),
       cuentaPagada: new FormControl(0),
       cuentaNoPagada: new FormControl(0)
     })
@@ -81,10 +81,10 @@ export class CrearMiembroComponent implements OnInit {
    */
   enviarFormulario() {
     if (this.nuevoMiembro.valid) {
-      alert('Se va a añadir al nuevo basuras')
-      this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
+          alert('Se va a añadir al nuevo basuras')
+          this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
+      }
     }
-  }
   /**
    * @agregarTicket RECOGE EL VALOR QUE RECIBE POR EMITTER
    * DE COMPONENTE MIEMBROS-PAGE Y LO SUMA 
@@ -121,13 +121,15 @@ export class CrearMiembroComponent implements OnInit {
    * Y LO BORRA DE LA LISTA
    */
   eliminarMiembroSeleccionado(seleccionado:any) {
-    let i = this.miembros?.findIndex((miembro:IMiembro) => miembro.nombre ===  seleccionado)
+    let i = this.contactService.listadoMiembros.findIndex((miembro:IMiembro) => miembro.nombre ===  seleccionado)
     if(i !== -1) {
       this.miembros?.splice(i as number, 1)
       }
     }
 
-
+    /**
+     * @irResumen REDIRIGE A LA PÁGINA DE MIEMBROS DETAIL
+     */
     irResumen() {
       this.router.navigate(["/miembrosDetail"])
     }
