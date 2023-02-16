@@ -128,7 +128,7 @@ export class CrearMiembroComponent implements OnInit {
     }
 
     /**
-     * @irResumen REDIRIGE A LA PÁGINA DE MIEMBROS DETAIL
+     * @irResumen NAVEGA A PÁGINA DE MIEMBROS DETAIL
      */
     irResumen() {
       this.router.navigate(["/miembrosDetail"])

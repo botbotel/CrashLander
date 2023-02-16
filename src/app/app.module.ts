@@ -13,11 +13,11 @@ import { MiembrosDetailComponent } from './pages/miembros-detail/miembros-detail
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MaterialModule } from './modules/material/material.module';
 
+
 // APLICAR IDIOMA ESPAÑOL EN LA APLICACIÓN
 import localeES from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
 import { ContactServiceService } from './services/contact-service.service';
 registerLocaleData(localeES)
 
@@ -30,13 +30,14 @@ registerLocaleData(localeES)
     HomePageComponent,
     MiembrosPageComponent,
     MiembrosDetailComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {

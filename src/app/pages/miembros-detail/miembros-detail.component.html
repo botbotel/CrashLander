@@ -24,5 +24,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<button mat-raised-button color="primary" class="botonExcel"> Descargar en Excel </button>
+<button mat-raised-button color="primary" class="botonExcel" (click)="exportToExcel()"> Exportar a Excel </button>
 
