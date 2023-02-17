@@ -58,6 +58,7 @@ export class MiembrosPageComponent implements OnInit {
    * DE CREAR-MIEMBRO-COMPONENT
    */
   agregarTicket() {
+    alert('ATENCION VA A AGREGAR UN TICKET PAGADO')
     let cuentaPagada = this.miembro.cuentaPagada += 5
     this.sumarTicket.emit(
       cuentaPagada
@@ -70,6 +71,7 @@ export class MiembrosPageComponent implements OnInit {
    * DE CREAR-MIEMBRO-COMPONENT
    */
   agregarTicketNoPagado() {
+    alert('ATENCION VA A AGREGAR UN TICKET NO PAGADO')
     this.sumarTicketNP.emit(
       this.miembro.cuentaNoPagada += 5
     );
@@ -83,6 +85,7 @@ export class MiembrosPageComponent implements OnInit {
    * @cuentaTotalPagada
    */
   borrarCuentaNP() {
+    alert('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS NO PAGADOS')
     let cuentaNoPagada = this.miembro.cuentaNoPagada
     this.miembro.cuentaNoPagada -= cuentaNoPagada
     this.miembro.cuentaPagada += cuentaNoPagada
@@ -93,6 +96,7 @@ export class MiembrosPageComponent implements OnInit {
    * @borrarCuentaP BORRA LA CUENTA TOTAL DEL MIEMBRO SELECCIONADO
    */
   borrarCuentaP() {
+    alert('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS PAGADOS')
     this.miembro.cuentaPagada -= this.miembro.cuentaPagada
   }
     /************************************************************/
@@ -101,6 +105,7 @@ export class MiembrosPageComponent implements OnInit {
    * @eliminarMiembroSeleccionado PARA SU COMPROBACIÓN Y BORRADO DEL ARRAY
    */
   eliminarMiembro() {
+    alert('ATENCION VA A BORRAR UN USUARIO')
     const seleccionado = this.miembro.nombre
     this.eliminarM.emit(seleccionado)
   }

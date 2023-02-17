@@ -6,8 +6,16 @@ import { IMiembro } from '../interfaces/miembros.interface';
 })
 export class ContactServiceService {
   
+  /**
+   * LISTADO GENERAL DE MIEMBROS
+   */
   listadoMiembros:IMiembro[] = []
   
+  /**
+   * CUENTAS TOTALES
+   */
+  cuentaTotalPagada:number = 0
+  cuentaTotalNoPagada:number = 0
   
   constructor() { }
 

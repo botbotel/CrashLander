@@ -33,11 +33,9 @@ export class CrearMiembroComponent implements OnInit {
   
 
   constructor(private formBuilder: FormBuilder, private contactService:ContactServiceService, private router:Router) { }
-
-  @Input() cuentaTotalPagada: number = 0
-  @Input() cuentaTotalNoPagada: number = 0
-
-
+  cuentaTotalPagada:number
+  cuentaTotalNoPagada:number
+  
   
 
   ngOnInit(): void {
@@ -45,7 +43,14 @@ export class CrearMiembroComponent implements OnInit {
     /**
      * CARGA EL ARRAY DESDE CONTACT-SERVICE Y LO DECLARA COMO MIEMBROS
      */
-    this.contactService.listadoMiembros = this.miembros
+    this.miembros = this.contactService.listadoMiembros
+
+    /**
+     * DECLARACION DE CUENTAS TOTALES EN VARIABLE LOCAL
+     */
+    this.cuentaTotalPagada = this.contactService.cuentaTotalPagada
+    this.cuentaTotalNoPagada = this.contactService.cuentaTotalNoPagada
+
 
     /**
      * CREACION DE NUEVO MIEMBRO RECOGIDOS EN 
@@ -58,7 +63,8 @@ export class CrearMiembroComponent implements OnInit {
       cuentaNoPagada: new FormControl(0)
     })
   }
-
+  
+  
 
   //GETTERS DE FORMULARIO
   get nombre() {
@@ -91,7 +97,8 @@ export class CrearMiembroComponent implements OnInit {
    * EN @cuentaTotalPagada
    */
   agregarTicket() {
-    this.cuentaTotalPagada += 5
+    this.contactService.cuentaTotalPagada += 5
+    this.cuentaTotalPagada += 5 
   }
 
   /**
@@ -100,6 +107,7 @@ export class CrearMiembroComponent implements OnInit {
  * EN @cuentaTotalNoPagada
  */
   agregarTicketNoPagado() {
+    this.contactService.cuentaTotalNoPagada += 5
     this.cuentaTotalNoPagada += 5
   }
 
@@ -109,9 +117,11 @@ export class CrearMiembroComponent implements OnInit {
    * Y SUMA A @cuentaTotalPagada
    */
   eliminarNP(cuentaNoPagada: number) {
-    this.cuentaTotalNoPagada -= cuentaNoPagada;
-    if (this.cuentaTotalNoPagada >= 0) {
-      this.cuentaTotalPagada += cuentaNoPagada;
+    this.contactService.cuentaTotalNoPagada -= cuentaNoPagada;
+    this.cuentaTotalNoPagada -= cuentaNoPagada
+    if (this.contactService.cuentaTotalNoPagada >= 0) {
+      this.contactService.cuentaTotalPagada += cuentaNoPagada; 
+      this.cuentaTotalPagada += cuentaNoPagada
     }
   }
 

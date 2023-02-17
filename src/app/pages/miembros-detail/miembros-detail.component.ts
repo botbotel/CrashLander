@@ -21,7 +21,8 @@ miembros:IMiembro[]
 /**
  * OBTENCIÓN DE FECHA PARA EXPORTACIÓN DE EXCEL
  */
-date:Date = new Date()
+date = new Date().toLocaleDateString('es-ES')
+
 
 
 constructor(private contactService:ContactServiceService, private route:Router){}  
@@ -47,7 +48,7 @@ exportToExcel(): void {
   const worksheet = XLSX.utils.json_to_sheet(this.miembros);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Miembros');
-  XLSX.writeFile(workbook, 'Listado_tickets_miembros_'+ this.date + '.xlsx');
+  XLSX.writeFile(workbook, 'Listado_tickets_miembros_' + this.date + '.xlsx');
 }
 
 /**

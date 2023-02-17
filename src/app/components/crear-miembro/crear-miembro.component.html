@@ -1,6 +1,6 @@
 <div class="cuentasTotales" >
-    <h2>Total Tickets pagados: {{cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
-    <h2>Total Tickets a deber: {{cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
+    <h2>Total Tickets pagados: {{ cuentaTotalPagada | currency:'EUR':true:'.0-0'}}</h2>
+    <h2>Total Tickets a deber: {{ cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
 </div>
 
 <button mat-raised-button (click)="irResumen()" color="primary">Ver Resumen</button>
