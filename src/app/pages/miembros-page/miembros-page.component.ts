@@ -35,7 +35,7 @@ export class MiembrosPageComponent implements OnInit {
  * PARA RESTARLA EN @cuentaTotalNoPagada Y SUMARLA EN @cuentaTotalPagada
  */
   @Output() limpiarNP = new EventEmitter<number>();
-  
+
   /*****************************************************/
   /**
  * MANDA EL NOMBRE DEL USUARIO A ELIMINAR EN EL ARRAY
@@ -58,11 +58,13 @@ export class MiembrosPageComponent implements OnInit {
    * DE CREAR-MIEMBRO-COMPONENT
    */
   agregarTicket() {
-    alert('ATENCION VA A AGREGAR UN TICKET PAGADO')
-    let cuentaPagada = this.miembro.cuentaPagada += 5
-    this.sumarTicket.emit(
-      cuentaPagada
-    );
+    let mensaje = confirm('ATENCION VA A AGREGAR UN TICKET PAGADO')
+    if (mensaje === true) {
+      let cuentaPagada = this.miembro.cuentaPagada += 5
+      this.sumarTicket.emit(
+        cuentaPagada
+      );
+    }
   }
   /************************************************************/
   /**
@@ -71,12 +73,14 @@ export class MiembrosPageComponent implements OnInit {
    * DE CREAR-MIEMBRO-COMPONENT
    */
   agregarTicketNoPagado() {
-    alert('ATENCION VA A AGREGAR UN TICKET NO PAGADO')
-    this.sumarTicketNP.emit(
-      this.miembro.cuentaNoPagada += 5
-    );
+    let mensaje = confirm('ATENCION VA A AGREGAR UN TICKET NO PAGADO')
+    if (mensaje === true) {
+      this.sumarTicketNP.emit(
+        this.miembro.cuentaNoPagada += 5
+      );
+    }
   }
-    /************************************************************/
+  /************************************************************/
   /**
    * @borrarCuentaNP BORRA LA CUENTA NO PAGADA DEL MIEMBRO, 
    * SUMA LA CANTIDAD A DEBER A @cuentaPagada DEL MIEMBRO
@@ -85,29 +89,35 @@ export class MiembrosPageComponent implements OnInit {
    * @cuentaTotalPagada
    */
   borrarCuentaNP() {
-    alert('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS NO PAGADOS')
-    let cuentaNoPagada = this.miembro.cuentaNoPagada
-    this.miembro.cuentaNoPagada -= cuentaNoPagada
-    this.miembro.cuentaPagada += cuentaNoPagada
-    this.limpiarNP.emit(cuentaNoPagada)
+    let mensaje = confirm('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS NO PAGADOS, SOLO DEBE BORRARSE SI EL IMPORTE A DEBER ES PAGADO ¿ESTÁS SEGURO?')
+    if (mensaje === true) {
+      let cuentaNoPagada = this.miembro.cuentaNoPagada
+      this.miembro.cuentaNoPagada -= cuentaNoPagada
+      this.miembro.cuentaPagada += cuentaNoPagada
+      this.limpiarNP.emit(cuentaNoPagada)
+    }
   }
-    /************************************************************/
+  /************************************************************/
   /**
    * @borrarCuentaP BORRA LA CUENTA TOTAL DEL MIEMBRO SELECCIONADO
    */
   borrarCuentaP() {
-    alert('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS PAGADOS')
-    this.miembro.cuentaPagada -= this.miembro.cuentaPagada
+    let mensaje = confirm('ATENCION VA A BORRAR LA CUENTA DE LOS TICKETS PAGADOS')
+    if (mensaje === true) {
+      this.miembro.cuentaPagada -= this.miembro.cuentaPagada
+    }
   }
-    /************************************************************/
+  /************************************************************/
   /**
    * @eliminarMiembro EMITE EL NOMBRE DEL MIEMBRO SELECCIONADO A
    * @eliminarMiembroSeleccionado PARA SU COMPROBACIÓN Y BORRADO DEL ARRAY
    */
   eliminarMiembro() {
-    alert('ATENCION VA A BORRAR UN USUARIO')
-    const seleccionado = this.miembro.nombre
-    this.eliminarM.emit(seleccionado)
+    let mensaje = confirm('ATENCION VA A BORRAR UN USUARIO')
+    if (mensaje === true) {
+      const seleccionado = this.miembro.nombre
+      this.eliminarM.emit(seleccionado)
+    }
   }
 
 }

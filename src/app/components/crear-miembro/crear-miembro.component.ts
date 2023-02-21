@@ -21,19 +21,22 @@ import { Router } from '@angular/router';
 
 export class CrearMiembroComponent implements OnInit {
   /**
-   * VALOR POR DEFECTO
+   * VALORES POR DEFECTO DE FORMULARIO
    */
-  value = '';
+  nombreValue = '';
+  cuentaPValue = 0;
+  cuentaNPValue = 0
+
 
   nuevoMiembro: FormGroup = new FormGroup({})
 
-  miembros: IMiembro[] =  []
-  
-  cuentaTotalPagada:number
-  cuentaTotalNoPagada:number
-  
+  miembros: IMiembro[] = []
 
-  constructor(private formBuilder: FormBuilder, private contactService:ContactServiceService, private router:Router) { }
+  cuentaTotalPagada: number
+  cuentaTotalNoPagada: number
+
+
+  constructor(private formBuilder: FormBuilder, private contactService: ContactServiceService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -55,14 +58,13 @@ export class CrearMiembroComponent implements OnInit {
      * FORMGROUP CON VALORES POR DEFECTO
      * CUENTAS INICIAN EN 0 SIEMPRE
      */
-    this.nuevoMiembro = new FormGroup ({
-      nombre: new FormControl('', [Validators.required]),
-      cuentaPagada: new FormControl(0),
-      cuentaNoPagada: new FormControl(0)
+    this.nuevoMiembro = new FormGroup({
+      nombre: new FormControl(this.nombreValue, [Validators.required]),
+      cuentaPagada: new FormControl(this.cuentaPValue),
+      cuentaNoPagada: new FormControl(this.cuentaNPValue)
     })
   }
-  
-  
+
 
   //GETTERS DE FORMULARIO
   get nombre() {
@@ -85,10 +87,10 @@ export class CrearMiembroComponent implements OnInit {
    */
   enviarFormulario() {
     if (this.nuevoMiembro.valid) {
-          alert('Se va a añadir al nuevo basuras')
-          this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
-      }
+      alert('Se va a añadir al nuevo basuras')
+      this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
     }
+  }
   /**
    * @agregarTicket RECOGE EL VALOR QUE RECIBE POR EMITTER
    * DE COMPONENTE MIEMBROS-PAGE Y LO SUMA 
@@ -96,7 +98,7 @@ export class CrearMiembroComponent implements OnInit {
    */
   agregarTicket() {
     this.contactService.cuentaTotalPagada += 5
-    this.cuentaTotalPagada += 5 
+    this.cuentaTotalPagada += 5
   }
 
   /**
@@ -118,7 +120,7 @@ export class CrearMiembroComponent implements OnInit {
     this.contactService.cuentaTotalNoPagada -= cuentaNoPagada;
     this.cuentaTotalNoPagada -= cuentaNoPagada
     if (this.contactService.cuentaTotalNoPagada >= 0) {
-      this.contactService.cuentaTotalPagada += cuentaNoPagada; 
+      this.contactService.cuentaTotalPagada += cuentaNoPagada;
       this.cuentaTotalPagada += cuentaNoPagada
     }
   }
@@ -128,18 +130,18 @@ export class CrearMiembroComponent implements OnInit {
    * DESDE EL EMITTER, BUSCA EL MIEMBRO EN EL ARRAY, COGE SU INDEX
    * Y LO BORRA DE LA LISTA
    */
-  eliminarMiembroSeleccionado(seleccionado:any) {
-    let i = this.contactService.listadoMiembros.findIndex((miembro:IMiembro) => miembro.nombre ===  seleccionado)
-    if(i !== -1) {
+  eliminarMiembroSeleccionado(seleccionado: any) {
+    let i = this.contactService.listadoMiembros.findIndex((miembro: IMiembro) => miembro.nombre === seleccionado)
+    if (i !== -1) {
       this.miembros?.splice(i as number, 1)
-      }
-    }
-
-    /**
-     * @irResumen NAVEGA A PÁGINA DE MIEMBROS DETAIL
-     */
-    irResumen() {
-      this.router.navigate(["/miembrosDetail"])
     }
   }
+
+  /**
+   * @irResumen NAVEGA A PÁGINA DE MIEMBROS DETAIL
+   */
+  irResumen() {
+    this.router.navigate(["/miembrosDetail"])
+  }
+}
 
