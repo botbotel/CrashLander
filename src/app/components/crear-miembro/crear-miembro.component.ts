@@ -29,14 +29,12 @@ export class CrearMiembroComponent implements OnInit {
 
   miembros: IMiembro[] =  []
   
-
-  
-
-  constructor(private formBuilder: FormBuilder, private contactService:ContactServiceService, private router:Router) { }
   cuentaTotalPagada:number
   cuentaTotalNoPagada:number
   
-  
+
+  constructor(private formBuilder: FormBuilder, private contactService:ContactServiceService, private router:Router) { }
+
 
   ngOnInit(): void {
 

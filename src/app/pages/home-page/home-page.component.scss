@@ -23,6 +23,11 @@
             justify-content: center;
             -webkit-text-stroke: 0.7px olive;
         }
+        h6 {
+            display: flex;
+            justify-content: right;
+            align-items: end;
+        }
     }
     
     .crearMiembro {
