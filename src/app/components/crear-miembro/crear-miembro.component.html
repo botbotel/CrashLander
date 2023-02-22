@@ -3,7 +3,10 @@
     <h2>Total Tickets a deber: {{ cuentaTotalNoPagada | currency:'EUR':true:'.0-0'}}</h2>
 </div>
 
+
 <button mat-raised-button (click)="irResumen()" color="primary">Ver Resumen</button>
+
+<p  [ngStyle]="{color: 'black'}">*Las cuentas de los miembros deben iniciarse siempre en 0</p>
 
 <div class="formulario" >
     <form [formGroup]="nuevoMiembro">

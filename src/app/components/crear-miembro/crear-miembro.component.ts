@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 
 
 export class CrearMiembroComponent implements OnInit {
+
   /**
    * VALORES POR DEFECTO DE FORMULARIO
    */
@@ -89,6 +90,7 @@ export class CrearMiembroComponent implements OnInit {
     if (this.nuevoMiembro.valid) {
       alert('Se va a añadir al nuevo basuras')
       this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
+      this.contactService.guardarMiembro(this.contactService.listadoMiembros)
     }
   }
   /**

@@ -19,6 +19,7 @@ import localeES from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactServiceService } from './services/contact-service.service';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localeES)
 
 @NgModule({
@@ -38,6 +39,7 @@ registerLocaleData(localeES)
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     {
