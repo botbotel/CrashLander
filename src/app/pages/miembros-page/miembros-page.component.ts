@@ -4,6 +4,7 @@ import { CrearMiembroComponent } from 'src/app/components/crear-miembro/crear-mi
 
 
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ContactServiceService } from 'src/app/services/contact-service.service';
 
 @Component({
   selector: 'app-miembros-page',
@@ -46,12 +47,13 @@ export class MiembrosPageComponent implements OnInit {
   panelOpenState = false;
 
 
+  
+  constructor(private contactService:ContactServiceService) { }
 
-  constructor() { }
 
   ngOnInit(): void { }
-
-
+  
+  
   /**
    * @agregarTicket SUMA +5 EN LA CUENTA PAGADA DEL MIEMBRO
    * Y A SU VEZ EMITE EL VALOR PARA SUMARLO EN @cuentaTotalPagada
@@ -62,7 +64,7 @@ export class MiembrosPageComponent implements OnInit {
     if (mensaje === true) {
       let cuentaPagada = this.miembro.cuentaPagada += 5
       this.sumarTicket.emit(
-        cuentaPagada
+      cuentaPagada
       );
     }
   }
@@ -106,6 +108,7 @@ export class MiembrosPageComponent implements OnInit {
     if (mensaje === true) {
       this.miembro.cuentaPagada -= this.miembro.cuentaPagada
     }
+    this.contactService.loadToBD()
   }
   /************************************************************/
   /**

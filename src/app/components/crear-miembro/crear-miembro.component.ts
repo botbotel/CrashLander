@@ -8,6 +8,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { findIndex } from 'rxjs';
 import { ContactServiceService } from 'src/app/services/contact-service.service';
 import { Router } from '@angular/router';
+import { HttpServiceService } from 'src/app/services/http-service.service';
 
 
 
@@ -31,13 +32,13 @@ export class CrearMiembroComponent implements OnInit {
 
   nuevoMiembro: FormGroup = new FormGroup({})
 
-  miembros: IMiembro[] = []
+  miembros: IMiembro[]
 
   cuentaTotalPagada: number
   cuentaTotalNoPagada: number
 
 
-  constructor(private formBuilder: FormBuilder, private contactService: ContactServiceService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private contactService: ContactServiceService, private httpService:HttpServiceService ,private router: Router) { }
 
 
   ngOnInit(): void {
@@ -45,7 +46,12 @@ export class CrearMiembroComponent implements OnInit {
     /**
      * CARGA EL ARRAY DESDE CONTACT-SERVICE Y LO DECLARA COMO MIEMBROS
      */
-    this.miembros = this.contactService.listadoMiembros
+    this.httpService.cargarMiembros().subscribe(
+      miembrosBD => {
+        this.miembros = Object.values(miembrosBD)
+        this.contactService.setMiembros(this.miembros)
+      }
+    )
 
     /**
      * DECLARACION DE CUENTAS TOTALES EN VARIABLE LOCAL
@@ -89,8 +95,8 @@ export class CrearMiembroComponent implements OnInit {
   enviarFormulario() {
     if (this.nuevoMiembro.valid) {
       alert('Se va a añadir al nuevo basuras')
-      this.contactService.listadoMiembros.push(this.nuevoMiembro.value)
-      this.contactService.guardarMiembro(this.contactService.listadoMiembros)
+      this.contactService.miembrosToBD.push(this.nuevoMiembro.value)
+      this.contactService.loadToBD()
     }
   }
   /**
@@ -101,6 +107,7 @@ export class CrearMiembroComponent implements OnInit {
   agregarTicket() {
     this.contactService.cuentaTotalPagada += 5
     this.cuentaTotalPagada += 5
+    this.contactService.loadToBD()
   }
 
   /**
@@ -111,6 +118,7 @@ export class CrearMiembroComponent implements OnInit {
   agregarTicketNoPagado() {
     this.contactService.cuentaTotalNoPagada += 5
     this.cuentaTotalNoPagada += 5
+    this.contactService.loadToBD()
   }
 
   /**
@@ -125,6 +133,7 @@ export class CrearMiembroComponent implements OnInit {
       this.contactService.cuentaTotalPagada += cuentaNoPagada;
       this.cuentaTotalPagada += cuentaNoPagada
     }
+    this.contactService.loadToBD()
   }
 
   /**
@@ -133,9 +142,13 @@ export class CrearMiembroComponent implements OnInit {
    * Y LO BORRA DE LA LISTA
    */
   eliminarMiembroSeleccionado(seleccionado: any) {
-    let i = this.contactService.listadoMiembros.findIndex((miembro: IMiembro) => miembro.nombre === seleccionado)
+    let i = this.miembros.findIndex((miembro: IMiembro) => miembro.nombre === seleccionado)
     if (i !== -1) {
       this.miembros?.splice(i as number, 1)
+    }
+    this.httpService.eliminarMiembro(i)
+    if(this.miembros != null) {
+    this.contactService.loadToBD()
     }
   }
 
